@@ -4,7 +4,7 @@ import os
 
 #Importar la clase
 import SeguimientoManos as sm
-
+#prueba de git hub
 #creacion de la carpeta
 nombre = "Letra_A"
 direccion = "F:/1. Proyecto final/lenguaje de señas/Vocales/data"
