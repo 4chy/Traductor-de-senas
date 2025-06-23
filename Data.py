@@ -7,7 +7,7 @@ import SeguimientoManos as sm
 #prueba de git hub
 #creacion de la carpeta
 nombre = "Letra_A"
-direccion = "F:/1. Proyecto final/lenguaje de señas/Vocales/data"
+direccion = "C:/Users/usuario/Desktop/proyecto-3ro/Traductor-de-senas/Vocales/data/Vocal_A"
 carpeta = direccion + "/" + nombre
 
 #Si no esta creada la carpeta
