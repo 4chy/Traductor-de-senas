@@ -17,7 +17,7 @@ if not os.path.exists(carpeta):
     os.makedirs(carpeta)
 
 #Lectura de la camara
-cap = cv2.VideoCapture()
+cap = cv2.VideoCapture(2)
 
 #Cambiar la resolucion
 cap.set(3,1280)
