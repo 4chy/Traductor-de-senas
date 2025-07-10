@@ -17,7 +17,7 @@ if not os.path.exists(carpeta):
     os.makedirs(carpeta)
 
 #Lectura de la camara
-cap = cv2.VideoCapture(2)
+cap = cv2.VideoCapture(0)
 
 #Cambiar la resolucion
 cap.set(3,1280)
@@ -27,17 +27,17 @@ cap.set(4,720)
 detector = sm.detectormanos(Confdeteccion=0.9)
 
 while True:
+    ret, frame = cap.read()
+    if not ret:
+        print("⚠️ No se pudo leer el frame de la cámara.")
+        continue
 
-    #Realizar la lectura de la cap
-    ret,frame = cap.read()
+    # Aplicar el detector de manos al frame
+    frame = detector.encontrarmanos(frame)
+    lista, bbox, player = detector.encontrarposicion(frame)
 
-    #Mostrar FPS
+    # Mostrar el frame con manos detectadas
     cv2.imshow("LENGUAJES VOCALES", frame)
 
-    #Leer nuestro teclado
-    t = cv2.waitKey(1)
-    if t == 27:
+    if cv2.waitKey(1) == 27:  # Tecla ESC
         break
-
-cap.release()
-cv2.destroyAllWindows()
