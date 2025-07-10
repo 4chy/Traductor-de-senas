@@ -31,6 +31,8 @@ while True:
     if not ret:
         print("⚠️ No se pudo leer el frame de la cámara.")
         continue
+    # Extraer informacion de la mano 
+    frame = detector.encontrarmanos(frame, dibujar= True )
 
     # Aplicar el detector de manos al frame
     frame = detector.encontrarmanos(frame)
