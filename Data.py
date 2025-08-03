@@ -32,11 +32,35 @@ while True:
         print("⚠️ No se pudo leer el frame de la cámara.")
         continue
     # Extraer informacion de la mano 
-    frame = detector.encontrarmanos(frame, dibujar= True )
+    frame = detector.encontrarmanos(frame, dibujar= False )
 
     # Aplicar el detector de manos al frame
-    frame = detector.encontrarmanos(frame)
-    lista, bbox, player = detector.encontrarposicion(frame)
+    
+    lista1, bbox, player = detector.encontrarposicion(frame, ManoNum=0, dibujarPuntos=False, dibujarBox=False, color=(128, 0, 128))
+
+    # Si detecta una mano:
+    if player >= 1: 
+        #Extraer informacion del cuadro
+        xmin, ymin, xmax, ymax = bbox
+
+        #Añadimos margen
+        xmin= xmin -40 #esquina superior izq hacia la izq
+        ymin= ymin -40 #esquina superior izq hacia arriba
+        xmax= xmax +40 #esquina inferior der hacia la der
+        ymax= ymax +40 #esquina inferior der hacia abajo
+
+        # Captura de pantalla de la mano
+        recorte= frame [ymin:ymax , xmin:xmax]
+        
+        #Redimensionamiento
+        #recorte= cv2.resize (recorte, (640,640), interpolation=cv2.INTER_CUBIC)# pone todas la ismagenes a 1 solo tamaño
+
+        #Almacenar imagenes
+
+        cv2.imshow("Captura de Pantalla", recorte) #Crea una segunda ventana que muestra lo que se va a recortar
+
+        #cv2.rectangle(frame, (xmin, ymin), (xmax, ymax), (0,255,0), 2)
+        #Muestra un rectangulo
 
     # Mostrar el frame con manos detectadas
     cv2.imshow("LENGUAJES VOCALES", frame)
