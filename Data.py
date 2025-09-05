@@ -1,4 +1,4 @@
-#Importar liberias
+#Importar liberias   #source venv/bin/activate  #deactivate
 import cv2
 import os
 
