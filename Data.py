@@ -9,7 +9,7 @@ import SeguimientoManos as sm
 nombre = "Letra_A"
 direccion = "C:/Users/usuario/Desktop/proyecto-3ro/Traductor-de-senas/Vocales/data/Vocal_A"
 carpeta = direccion + "/" + nombre
-
+recorte = None
 #Si no esta creada la carpeta
 if not os.path.exists(carpeta):
     print("CARPETA CREADA: ", carpeta)
@@ -22,7 +22,8 @@ cap = cv2.VideoCapture(0)
 #Cambiar la resolucion
 cap.set(3,1280)
 cap.set(4,720)
-
+#Declaramos contador
+cont=0
 #Declarar detector
 detector = sm.detectormanos(Confdeteccion=0.9)
 
@@ -56,8 +57,11 @@ while True:
         #recorte= cv2.resize (recorte, (640,640), interpolation=cv2.INTER_CUBIC)# pone todas la ismagenes a 1 solo tamaño
 
         #Almacenar imagenes
+        cv2.imwrite(carpeta + "A_{}.jpg".format(cont), recorte)
 
-        cv2.imshow("Captura de Pantalla", recorte) #Crea una segunda ventana que muestra lo que se va a recortar
+        # Aumentamos contador 
+        cont = cont + 1
+        cv2.imshow("RECORTE", recorte) #Crea una segunda ventana que muestra lo que se va a recortar
 
         #cv2.rectangle(frame, (xmin, ymin), (xmax, ymax), (0,255,0), 2)
         #Muestra un rectangulo
@@ -65,5 +69,5 @@ while True:
     # Mostrar el frame con manos detectadas
     cv2.imshow("LENGUAJES VOCALES", frame)
 
-    if cv2.waitKey(1) == 27:  # Tecla ESC
+    if cv2.waitKey(1) == 27 or cont == 100 :  # Tecla ESC
         break
